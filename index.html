@@ -1865,13 +1865,12 @@ function open_novel(card){
   document.getElementById('rTopTitle').textContent  = title;
 
   // split into paragraphs
-  const paras = raw
-    ? raw.split(/\n\n+/)
-        .map(p => p.replace(/\n/g,'<br>').trim())
-        .filter(p => p.length > 0)
-        .map(p => `<p>${p}</p>`)
-    : [];
-
+const paras = raw
+  ? raw.split(/\n/)
+      .map(p => p.trim())
+      .filter(p => p.length > 0)
+      .map(p => `<p>${p}</p>`)
+  : [];
   // chunk into pages
   allPages = [];
   for(let i = 0; i < paras.length; i += PARAS_PER_PAGE){
