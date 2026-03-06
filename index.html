@@ -16,6 +16,14 @@
 <title>Douae's Novels</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+  .c-playlist-btn{display:flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--sans);font-size:0.63rem;font-weight:500;color:var(--muted);background:none;border:1px solid var(--border);border-radius:50px;padding:5px 12px;cursor:pointer;transition:color 0.2s,border-color 0.2s;width:fit-content;}
+.c-playlist-btn:hover{color:var(--pink);border-color:var(--pinklt);}
+.c-playlist{display:none;margin-top:10px;padding:10px 12px;background:var(--bgsoft);border:1px solid var(--border);border-radius:10px;}
+.c-playlist.open{display:block;}
+.c-playlist-title{font-family:var(--sans);font-size:0.55rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.c-playlist ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;}
+.c-playlist ul li{font-family:var(--serif);font-size:0.78rem;color:var(--sub);line-height:1.4;padding-left:12px;position:relative;}
+.c-playlist ul li::before{content:'♪';position:absolute;left:0;color:var(--pinklt);font-size:0.65rem;}
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --pink:#f72585;
@@ -2318,6 +2326,19 @@ The end.</div>
 </style>
 
 <script>
+  function togglePlaylist(e, btn){
+  e.stopPropagation();
+  const card = btn.closest('.card');
+  const raw = card.getAttribute('data-playlist') || '';
+  const box = btn.nextElementSibling;
+  const ul = box.querySelector('ul');
+  if(box.classList.contains('open')){box.classList.remove('open');btn.textContent='♫ Playlist';return;}
+  ul.innerHTML='';
+  if(!raw){ul.innerHTML='<li style="font-style:italic;color:var(--muted)">No playlist yet…</li>';}
+  else{raw.split('|').forEach(song=>{const li=document.createElement('li');li.textContent=song.trim();ul.appendChild(li);});}
+  box.classList.add('open');
+  btn.textContent='✕ Close';
+}
 // ── how many paragraphs per page ──
 const PARAS_PER_PAGE = 12;
 
