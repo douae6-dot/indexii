@@ -16,14 +16,6 @@
 <title>Douae's Novels</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  .c-playlist-btn{display:flex;align-items:center;gap:5px;margin-top:10px;font-family:var(--sans);font-size:0.63rem;font-weight:500;color:var(--muted);background:none;border:1px solid var(--border);border-radius:50px;padding:5px 12px;cursor:pointer;transition:color 0.2s,border-color 0.2s;width:fit-content;}
-.c-playlist-btn:hover{color:var(--pink);border-color:var(--pinklt);}
-.c-playlist{display:none;margin-top:10px;padding:10px 12px;background:var(--bgsoft);border:1px solid var(--border);border-radius:10px;}
-.c-playlist.open{display:block;}
-.c-playlist-title{font-family:var(--sans);font-size:0.55rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
-.c-playlist ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;}
-.c-playlist ul li{font-family:var(--serif);font-size:0.78rem;color:var(--sub);line-height:1.4;padding-left:12px;position:relative;}
-.c-playlist ul li::before{content:'♪';position:absolute;left:0;color:var(--pinklt);font-size:0.65rem;}
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --pink:#f72585;
@@ -337,7 +329,7 @@ footer p{font-family:var(--sans);font-size:0.58rem;letter-spacing:0.2em;text-tra
   gap:16px;
   text-align:left;
 }
-.rule-item{
+  .rule-item{
   background:#fff;border:1.5px solid var(--border);
   border-radius:14px;padding:20px 20px 22px;
 }
@@ -514,29 +506,16 @@ footer p{font-family:var(--sans);font-size:0.58rem;letter-spacing:0.2em;text-tra
    
 
     <!-- NOVEL 1 -->
-   <div class="card" onclick="open_novel(this)"
+    <div class="card" onclick="open_novel(this)"
       data-genre="Dark Romance · Campus"
       data-title="The Girl Behind Shadow Lady"
-      data-desc="She wrote thousands of love letters about him — he just didn't know they were real, or that she even existed."
-data-playlist="Heather – Conan Gray | False God – Taylor Swift | gorgeous – Taylor Swift | Ivy – Frank Ocean | Happier – Olivia Rodrigo">
-      data-playlist="Heather – Conan Gray | False God – Taylor Swift | gorgeous – Taylor Swift | Ivy – Frank Ocean | Happier – Olivia Rodrigo">
+      data-desc="She wrote thousands of love letters about him — he just didn't know they were real, or that she even existed.">
       <div class="c-top"><span>🌹</span><span class="c-num">1</span></div>
       <div class="c-body">
         <div class="c-genre">Dark Romance · Campus</div>
         <div class="c-title"> The Girl Behind Shadow Lady</div>
         <div class="c-desc">She wrote thousands of love letters about him — he just didn't know they were real, or that she even existed.</div>
-       <div class="c-read">Read novel <span>→</span></div>
-        <button class="c-playlist-btn" onclick="togglePlaylist(event, this)">♫ Playlist</button>
-        <div class="c-playlist">
-          <div class="c-playlist-title">✦ Reading Playlist</div>
-          <ul></ul>
-        </div>
-      </div>
-        <button class="c-playlist-btn" onclick="togglePlaylist(event, this)">♫ Playlist</button>
-        <div class="c-playlist">
-          <div class="c-playlist-title">✦ Reading Playlist</div>
-          <ul></ul>
-        </div>
+        <div class="c-read">Read novel <span>→</span></div>
       </div>
       <div class="novel-text" style="display:none">
           <H1> PROLOGUE </H1>    
@@ -1617,8 +1596,7 @@ I glance down at the socks in my hand, clutching them like they're tiny grenades
 He laughs again, shaking his head. "You're ridiculous. Totally ridiculous." "Yes!" I say, dramatically pressing them into his hands. "Mission accomplished. But… carefully. Very carefully. One wrong move and…" I trail off, gesturing vaguely like a bomb might go off. He laughs, holding them like he's scared, and I collapse back onto the blanket, sighing. "Why is this so awkward?" I mutter. "Because you're… insane," he says, smirking. "Exactly," I whisper, feeling accomplished.
 
 We're sitting there, finally breathing, and I pull the little "menu" out of my bag. I hand it to him. "Here," I mumble. "Pick something." He scans it with that little smirk on his face. "I want everything," he says. "Literally all of it." "Everything?" I raise an eyebrow. "Yeah," he shrugs, pretending to be serious. "But uh… I can't pay for it here in public." He leans slightly closer, lowering his voice. "The… transaction… has to be discreet." I roll my eyes. "Oh my god. Not you joining my undercover operation."
-
-He laughs finally, like really laughs — and the sound makes me look away because I swear my soul left my body for a second.
+        He laughs finally, like really laughs — and the sound makes me look away because I swear my soul left my body for a second.
 
 And you know what? He looks so good today. Like annoyingly good. His hair is a little messy in that "I didn't try but somehow it's perfect" way. He's taller than me obviously but when he sits, he still feels tall, shoulders broad, taking up more space than he thinks. His eyes are soft but sharp at the same time, the kind that make you look down immediately because they feel too direct, too warm. And that jawline… it's just sitting there, being rude. Plus he smiles with only one side of his mouth first, like he's holding back a laugh before it comes out.
 
@@ -2326,19 +2304,6 @@ The end.</div>
 </style>
 
 <script>
-  function togglePlaylist(e, btn){
-  e.stopPropagation();
-  const card = btn.closest('.card');
-  const raw = card.getAttribute('data-playlist') || '';
-  const box = btn.nextElementSibling;
-  const ul = box.querySelector('ul');
-  if(box.classList.contains('open')){box.classList.remove('open');btn.textContent='♫ Playlist';return;}
-  ul.innerHTML='';
-  if(!raw){ul.innerHTML='<li style="font-style:italic;color:var(--muted)">No playlist yet…</li>';}
-  else{raw.split('|').forEach(song=>{const li=document.createElement('li');li.textContent=song.trim();ul.appendChild(li);});}
-  box.classList.add('open');
-  btn.textContent='✕ Close';
-}
 // ── how many paragraphs per page ──
 const PARAS_PER_PAGE = 12;
 
